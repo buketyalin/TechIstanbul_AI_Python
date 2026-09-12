@@ -139,3 +139,12 @@ def main():
 
 if __name__ == "__main__":  #bunu yazmazsak çıktıyı vermez
     main()
+
+    """
+    LogisticRegresssion:
+    z = 0.1422 * çalışma saati + 0.7122* katılım_yüzdesi - 45.1082
+    P(Geçti) =  1/(1+e^(-z))
+
+    P(Geçti) >=50 --> Geçti ==> z=0
+    %99,9997
+    """
