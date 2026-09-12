@@ -84,3 +84,58 @@ def main():
 
     print("\ny - Label(Etiketler)")
     print(y)
+
+    # Model Oluşturma
+    """
+     LogisticRegression bir sınıflandırma algoritmasıdır
+     İki tane sınıf vardı
+     0 --> Kaldı
+     1 --> Geçti
+     LogisticRegression, iki veya daha fazla sınıfın hangisine ait olduğunu tahmit etmek için kullanılan sınıfın algoritmasıdır
+    """
+
+    model = LogisticRegression()
+
+
+    #Model Eğitimi
+    # Model hem özellikleri hemde dorğu cevpları görsün
+    # Bu ilişkide çalışma saati + Katılım oranı --> Geçti/Kaldı
+    model.fit(X,y)
+
+    # Instance
+    # Örnek: Öğrenci 6 saat çalışıyor, Derse katılım %80
+
+    new_student = np.array([[6, 80]])
+
+    # Tahmin
+    prediction = model.predict(new_student)[0]
+
+    #Tahmin olasılıkları
+    probabilities = model.predict_proba(new_student)[0]
+
+    print("\nYeni Öğrenci")
+    print("Çalışma Saati: 6 saat")
+    print("Derse katılım: %80")
+
+    print("\nModel tahmini:", prediction)
+
+    # Conditional
+    if prediction == 1:
+        print("Sonuç: Öğrencinin GEÇMESİ bekleniyor")
+    else:
+        print("Sonuç: Öğrencinin KALMASI bekleniyor")
+
+    print("\nOlasılıklar:")
+    print(f"Kalma olasılığı: , %{probabilities[0] * 100:.2f}")
+    print(f"Geçme olasılığı: , %{probabilities[1] * 100:.2f}")
+
+    # ============ OZET ===================
+    print("\nÖZET")
+    print("Supervised Learning LABEL vardır")
+    print("Unutmaaaa:  Model, geçmişteki doğru cevapları öğrenir ve")
+    print("Bu örnekte label:0=Kaldı, 1=Geçti")
+    print("\n Ağırlıkları: ", model.coef_)
+    print("\n Bias: ", model.intercept_)
+
+if __name__ == "__main__":  #bunu yazmazsak çıktıyı vermez
+    main()
